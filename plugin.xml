@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
+    xmlns:rim="http://www.blackberry.com/ns/widgets"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    id="com.citronium.zbarcdvplugin"
+    version="0.2.4">
+    <name>ZBarCDVPlugin</name>
+    <description>ZBarCDVPlugin</description>
+    <license>MIT</license>
+    <keywords>zbar,citronium</keywords>
+    <repo></repo>
+    <issue></issue>
+    
+    <js-module src="www/ZBarCDVPlugin.js" name="ZBarCDVPlugin">
+        <clobbers target="ZBarCDVPlugin" />
+    </js-module>
+    
+    <!-- ios -->
+    <platform name="ios">
+        <config-file target="config.xml" parent="/*">
+            <feature name="ZBarCDVPlugin">
+                <param name="ios-package" value="ZBarCDVPlugin"/>
+            </feature>
+        </config-file>
+        
+        <header-file src="src/ios/ZBarCDVPlugin.h" />
+        <source-file src="src/ios/ZBarCDVPlugin.m" />
+        
+        <header-file src="src/ios/Decoder.h" />
+        <header-file src="src/ios/Exception.h" />
+        <header-file src="src/ios/Image.h" />
+        <header-file src="src/ios/ImageScanner.h" />
+        <header-file src="src/ios/Processor.h" />
+        <header-file src="src/ios/Scanner.h" />
+        <header-file src="src/ios/Symbol.h" />
+        <header-file src="src/ios/Video.h" />
+        <header-file src="src/ios/Window.h" />
+        <header-file src="src/ios/zbar.h" />
+        <header-file src="src/ios/ZBarCameraSimulator.h" />
+        <header-file src="src/ios/ZBarCaptureReader.h" />
+        <header-file src="src/ios/ZBarHelpController.h" />
+        <header-file src="src/ios/ZBarImage.h" />
+        <header-file src="src/ios/ZBarImageScanner.h" />
+        <header-file src="src/ios/ZBarReaderController.h" />
+        <header-file src="src/ios/ZBarReaderView.h" />
+        <header-file src="src/ios/ZBarReaderViewController.h" />
+        <header-file src="src/ios/ZBarSDK.h" />
+        <header-file src="src/ios/ZBarSymbol.h" />
+        
+        <source-file src="src/ios/libzbar.a" framework="true" compiler-flags="-fno-objc-arc"/>
+        
+        <framework src="CoreGraphics.framework" />
+        <framework src="CoreMedia.frmaework" />
+        <framework src="CoreGraphics.framework" />
+        <framework src="libiconv.dylib" />
+        <framework src="CoreVideo.framework" />
+        <framework src="QuartzCore.framework" />
+        <framework src="AVFoundation" />
+    </platform>
+
+    
+</plugin>
