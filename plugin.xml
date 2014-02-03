@@ -53,12 +53,12 @@
         <source-file src="src/ios/libzbar.a" framework="true" compiler-flags="-fno-objc-arc"/>
         
         <framework src="CoreGraphics.framework" />
-        <framework src="CoreMedia.frmaework" />
+        <framework src="CoreMedia.framework" />
         <framework src="CoreGraphics.framework" />
         <framework src="libiconv.dylib" />
         <framework src="CoreVideo.framework" />
         <framework src="QuartzCore.framework" />
-        <framework src="AVFoundation" />
+        <framework src="AVFoundation.framework" />
     </platform>
 
     
