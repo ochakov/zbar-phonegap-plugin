@@ -26,7 +26,9 @@
         
         <header-file src="src/ios/ZBarCDVPlugin.h" />
         <source-file src="src/ios/ZBarCDVPlugin.m" />
-        
+        <header-file src="src/ios/MyZBarViewReaderController.h" />
+        <source-file src="src/ios/MyZBarViewReaderController.m" />
+
         <header-file src="src/ios/Decoder.h" />
         <header-file src="src/ios/Exception.h" />
         <header-file src="src/ios/Image.h" />
