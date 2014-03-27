@@ -10,6 +10,12 @@
 
 @implementation MyZBarViewReaderController
 
+- (void)cancel:(UIButton*)button {
+    NSLog(@"!!!");
+    
+    [self dismissModalViewControllerAnimated:YES];
+}
+
 - (void)changeOverlayFrame:(UIInterfaceOrientation)interfaceOrientation readerController:(ZBarReaderViewController*) readerController
 {
     BOOL isPortrait = (interfaceOrientation == UIInterfaceOrientationPortrait);
@@ -22,7 +28,7 @@
     double overlayX = (screenWidth - overlayWidth) / 2;
     double overlayY = (screenHeight - overlayHeight) / 2;
     
-    NSLog(@"%f %f %f %f", overlayX, overlayY, overlayWidth, overlayHeight);
+    NSLog(@"%f %f %f %f", overlayX, overlayY, overlayWidth, screenHeight);
     
     [readerController.cameraOverlayView setFrame:CGRectMake(overlayX, overlayY, overlayWidth, overlayHeight)];
     
@@ -34,6 +40,20 @@
         [cameraOverlayView addSubview:redLine];
     }
     [redLine setFrame:CGRectMake(0, self.cameraOverlayView.frame.size.height / 2, cameraOverlayView.frame.size.width, 2)];
+    
+    if (!cancelButton) {
+        cancelButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+        [cancelButton setTitle:@"Cancel" forState:UIControlStateNormal];
+        cancelButton.titleLabel.textColor = [UIColor blueColor];
+        cancelButton.titleLabel.textAlignment = UITextAlignmentLeft;
+        [cancelButton.titleLabel setFont:[UIFont systemFontOfSize:18]];
+        [cancelButton addTarget:self
+                         action:@selector(cancel:)
+               forControlEvents:UIControlEventTouchUpInside];
+        [self.view addSubview:cancelButton];
+    }
+    [cancelButton setFrame:CGRectMake(0, screenHeight - 40, cameraOverlayView.frame.size.width / 4, 40)];
+     
     
     CGFloat x,y,width,height;
     x = readerController.cameraOverlayView.frame.origin.x / screenWidth;
@@ -54,12 +74,14 @@
 }
 
 -(void)viewDidLoad {
+    //NSLog(@"%@", [[self.view.subviews objectAtIndex:1] subviews]);
+    [self setShowsZBarControls:FALSE];
     [super viewDidLoad];
 }
 
 -(void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    
+    [self setShowsZBarControls:FALSE];
     [self changeOverlayFrame:UIDeviceOrientationIsPortrait([[UIApplication sharedApplication] statusBarOrientation]) readerController:self];
 }
 

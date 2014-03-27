@@ -22,9 +22,6 @@
         
         self.readerController.cameraOverlayView = cameraOverlayView;
         self.readerController.readerDelegate = self;
-        self.readerController.showsZBarControls = YES;
-
-
         ZBarImageScanner *scanner = self.readerController.scanner;
         [scanner setSymbology: ZBAR_I25
                        config: ZBAR_CFG_ENABLE
@@ -34,7 +31,6 @@
 
     }
     // present and release the controller
-    self.readerController.showsZBarControls = YES;
     [[super viewController] presentModalViewController:self.readerController animated: YES];
     
     CDVPluginResult* pluginResult = nil;

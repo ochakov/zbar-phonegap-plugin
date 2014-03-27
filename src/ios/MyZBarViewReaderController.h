@@ -12,6 +12,7 @@
 @interface MyZBarViewReaderController : ZBarReaderViewController
 {
     UIView* redLine;
+    UIButton* cancelButton;
 }
 
 @end
