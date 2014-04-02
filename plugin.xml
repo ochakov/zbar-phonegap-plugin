@@ -67,7 +67,7 @@
             </feature>
         </config-file>
         <config-file target="AndroidManifest.xml" parent="/manifest/application">
-            <activity android:label="ScannerActivity" android:name="com.citronium.zbarcdvplugin.ScannerActivity"></activity>
+            <activity android:label="ScannerActivity" android:name="com.citronium.zbarcdvplugin.ScannerActivity" android:theme="@android:style/Theme.NoTitleBar"></activity>
         </config-file>
         <config-file target="AndroidManifest.xml" parent="/manifest">
             <uses-permission android:name="android.permission.CAMERA" />
