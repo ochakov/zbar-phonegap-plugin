@@ -73,17 +73,23 @@
             <uses-permission android:name="android.permission.CAMERA" />
         </config-file>        
 
-        <source-file src="src/android/com/citronium/zbarcdvplugin/BarcodeFormat.java" target-dir="src/com/citronium/zbarcdvplugin" /> 
-        <source-file src="src/android/com/citronium/zbarcdvplugin/Result.java" target-dir="src/com/citronium/zbarcdvplugin" /> 
-        <source-file src="src/android/com/citronium/zbarcdvplugin/ScannerActivity.java" target-dir="src/com/citronium/zbarcdvplugin" /> 
-        <source-file src="src/android/com/citronium/zbarcdvplugin/ScannerPlugin.java" target-dir="src/com/citronium/zbarcdvplugin" /> 
-        <source-file src="src/android/com/citronium/zbarcdvplugin/ZBarScannerView.java" target-dir="src/com/citronium/zbarcdvplugin" /> 
+        <source-file src="src/android/src/com/citronium/zbarcdvplugin/ScannerActivity.java" target-dir="src/com/citronium/zbarcdvplugin" /> 
+        <source-file src="src/android/src/com/citronium/zbarcdvplugin/ScannerPlugin.java" target-dir="src/com/citronium/zbarcdvplugin" /> 
 
-        <source-file src="src/android/com/citronium/zbarcdvplugin/core/BarcodeScannerView.java" target-dir="src/com/citronium/zbarcdvplugin/core" /> 
-        <source-file src="src/android/com/citronium/zbarcdvplugin/core/CameraPreview.java" target-dir="src/com/citronium/zbarcdvplugin/core" /> 
-        <source-file src="src/android/com/citronium/zbarcdvplugin/core/CameraUtils.java" target-dir="src/com/citronium/zbarcdvplugin/core" /> 
-        <source-file src="src/android/com/citronium/zbarcdvplugin/core/DisplayUtils.java" target-dir="src/com/citronium/zbarcdvplugin/core" /> 
-        <source-file src="src/android/com/citronium/zbarcdvplugin/core/ViewFinderView.java" target-dir="src/com/citronium/zbarcdvplugin/core" /> 
+        <source-file src="src/android/src/com/citronium/zbarcdvplugin/zbar/BarcodeFormat.java" target-dir="src/com/citronium/zbarcdvplugin/zbar" /> 
+        <source-file src="src/android/src/com/citronium/zbarcdvplugin/zbar/Result.java" target-dir="src/com/citronium/zbarcdvplugin/zbar" />         
+        <source-file src="src/android/src/com/citronium/zbarcdvplugin/zbar/ZBarScannerView.java" target-dir="src/com/citronium/zbarcdvplugin/zbar" /> 
+
+        <source-file src="src/android/src/com/citronium/zbarcdvplugin/core/BarcodeScannerView.java" target-dir="src/com/citronium/zbarcdvplugin/core" /> 
+        <source-file src="src/android/src/com/citronium/zbarcdvplugin/core/CameraPreview.java" target-dir="src/com/citronium/zbarcdvplugin/core" /> 
+        <source-file src="src/android/src/com/citronium/zbarcdvplugin/core/CameraUtils.java" target-dir="src/com/citronium/zbarcdvplugin/core" /> 
+        <source-file src="src/android/src/com/citronium/zbarcdvplugin/core/DisplayUtils.java" target-dir="src/com/citronium/zbarcdvplugin/core" /> 
+        <source-file src="src/android/src/com/citronium/zbarcdvplugin/core/ViewFinderView.java" target-dir="src/com/citronium/zbarcdvplugin/core" /> 
+
+        <source-file src="src/android/libs/armeabi.jar" target-dir="libs" /> 
+        <source-file src="src/android/libs/armeabi-v7a.jar" target-dir="libs" /> 
+        <source-file src="src/android/libs/x86.jar" target-dir="libs" /> 
+        <source-file src="src/android/libs/zbar.jar" target-dir="libs" /> 
 
     </platform>
 
