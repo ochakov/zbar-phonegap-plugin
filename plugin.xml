@@ -60,6 +60,32 @@
         <framework src="QuartzCore.framework" />
         <framework src="AVFoundation.framework" />
     </platform>
+    <platform name="android">
+        <config-file target="config.xml" parent="/*">
+            <feature name="ZBarCDVPlugin">
+                <param name="android-package" value="com.citronium.zbarcdvplugin.ZBarCDVPlugin"/>
+            </feature>
+        </config-file>
+        <config-file target="AndroidManifest.xml" parent="/manifest/application">
+            <activity android:label="ScannerActivity" android:name="com.citronium.zbarcdvplugin.ScannerActivity">
+        </config-file>
+        <config-file target="AndroidManifest.xml" parent="/manifest">
+            <uses-permission android:name="android.permission.CAMERA" />
+        </config-file>        
+
+        <source-file src="src/android/com/citronium/zbarcdvplugin/BarcodeFormat.java" target-dir="src/com/citronium/zbarcdvplugin" /> 
+        <source-file src="src/android/com/citronium/zbarcdvplugin/Result.java" target-dir="src/com/citronium/zbarcdvplugin" /> 
+        <source-file src="src/android/com/citronium/zbarcdvplugin/ScannerActivity.java" target-dir="src/com/citronium/zbarcdvplugin" /> 
+        <source-file src="src/android/com/citronium/zbarcdvplugin/ScannerPlugin.java" target-dir="src/com/citronium/zbarcdvplugin" /> 
+        <source-file src="src/android/com/citronium/zbarcdvplugin/ZBarScannerView.java" target-dir="src/com/citronium/zbarcdvplugin" /> 
+
+        <source-file src="src/android/com/citronium/zbarcdvplugin/core/BarcodeScannerView.java" target-dir="src/com/citronium/zbarcdvplugin/core" /> 
+        <source-file src="src/android/com/citronium/zbarcdvplugin/core/CameraPreview.java" target-dir="src/com/citronium/zbarcdvplugin/core" /> 
+        <source-file src="src/android/com/citronium/zbarcdvplugin/core/CameraUtils.java" target-dir="src/com/citronium/zbarcdvplugin/core" /> 
+        <source-file src="src/android/com/citronium/zbarcdvplugin/core/DisplayUtils.java" target-dir="src/com/citronium/zbarcdvplugin/core" /> 
+        <source-file src="src/android/com/citronium/zbarcdvplugin/core/ViewFinderView.java" target-dir="src/com/citronium/zbarcdvplugin/core" /> 
+
+    </platform>
 
     
 </plugin>
