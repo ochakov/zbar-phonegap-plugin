@@ -1,11 +1,11 @@
 package com.citronium.zbarcdvplugin;
 
+import android.content.Context;
 import org.apache.cordova.CallbackContext;
 import org.apache.cordova.CordovaPlugin;
 import org.json.JSONObject;
 import org.json.JSONArray;
 import org.json.JSONException;
-import android.app.Activity;
 import android.content.Intent;
 
 /**
@@ -29,8 +29,14 @@ public class ZBarCDVPlugin extends CordovaPlugin {
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (data == null) {return;}
-        String name = data.getStringExtra("name");
-        mCallbackContext.success(name);
+        if (requestCode == ScannerActivity.REQUEST_CODE) {
+            String res = null;
+
+            if (resultCode == ScannerActivity.RESULT_OK) {
+                res = data.getStringExtra(ScannerActivity.CODE);
+            }
+
+            mCallbackContext.success(res);
+        }
     }
 }

@@ -39,17 +39,15 @@ public class ScannerActivity extends Activity implements ZBarScannerView.ResultH
         //Log.v("scan", rawResult.getBarcodeFormat().getName()); // Prints the scan format (qrcode, pdf417 etc.)
 
         Intent intent = new Intent();
-        intent.putExtra("name", rawResult.getContents());
+        intent.putExtra(CODE, rawResult.getContents());
         setResult(RESULT_OK, intent);
         finish();
     }
 
     @Override
     public void onBackPressed() {
-        // your code.
-        Intent intent = new Intent();
-        intent.putExtra("name", "canceled");
-        setResult(RESULT_CANCELED, intent);
-        finish();
+        setResult(RESULT_CANCELED);
+        //finish();
+        super.onBackPressed();
     }
 }
