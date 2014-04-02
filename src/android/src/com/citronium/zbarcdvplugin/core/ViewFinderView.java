@@ -13,6 +13,7 @@ import android.view.View;
 
 public class ViewFinderView extends View {
     private static final String TAG = "ViewFinderView";
+    private String PACKAGE_NAME;
 
     private Rect mFramingRect;
 
@@ -34,12 +35,19 @@ public class ViewFinderView extends View {
     private static final int POINT_SIZE = 10;
     private static final long ANIMATION_DELAY = 80l;
 
+    private void init(Context context) {
+        PACKAGE_NAME = context.getPackageName();
+    }
+
     public ViewFinderView(Context context) {
         super(context);
+        init(context);
+
     }
 
     public ViewFinderView(Context context, AttributeSet attrs) {
         super(context, attrs);
+        init(context);
     }
 
     public void setupViewFinder() {
@@ -65,7 +73,7 @@ public class ViewFinderView extends View {
     public void drawViewFinderMask(Canvas canvas) {
         Paint paint = new Paint();
         Resources resources = getResources();
-        paint.setColor(resources.getColor(R.color.viewfinder_mask));
+        paint.setColor(resources.getColor(resources.getIdentifier("viewfinder_mask", "color", PACKAGE_NAME)));
 
         int width = canvas.getWidth();
         int height = canvas.getHeight();
@@ -79,10 +87,10 @@ public class ViewFinderView extends View {
     public void drawViewFinderBorder(Canvas canvas) {
         Paint paint = new Paint();
         Resources resources = getResources();
-        paint.setColor(resources.getColor(R.color.viewfinder_border));
+        paint.setColor(resources.getColor(resources.getIdentifier("viewfinder_border", "color", PACKAGE_NAME)));
         paint.setStyle(Paint.Style.STROKE);
-        paint.setStrokeWidth(resources.getInteger(R.integer.viewfinder_border_width));
-        int lineLength = resources.getInteger(R.integer.viewfinder_border_length);
+        paint.setStrokeWidth(resources.getInteger(resources.getIdentifier("viewfinder_border_width", "integer", PACKAGE_NAME)));
+        int lineLength = resources.getInteger(resources.getIdentifier("viewfinder_border_length", "integer", PACKAGE_NAME));
 
         canvas.drawLine(mFramingRect.left - 1, mFramingRect.top - 1, mFramingRect.left - 1, mFramingRect.top - 1 + lineLength, paint);
         canvas.drawLine(mFramingRect.left - 1, mFramingRect.top - 1, mFramingRect.left - 1 + lineLength, mFramingRect.top - 1, paint);
@@ -101,7 +109,7 @@ public class ViewFinderView extends View {
         Paint paint = new Paint();
         Resources resources = getResources();
         // Draw a red "laser scanner" line through the middle to show decoding is active
-        paint.setColor(resources.getColor(R.color.viewfinder_laser));
+        paint.setColor(resources.getColor(resources.getIdentifier("viewfinder_laser", "color", PACKAGE_NAME)));
         paint.setAlpha(SCANNER_ALPHA[scannerAlpha]);
         paint.setStyle(Paint.Style.FILL);
         scannerAlpha = (scannerAlpha + 1) % SCANNER_ALPHA.length;
