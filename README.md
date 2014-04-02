@@ -1,5 +1,8 @@
 zbar-phonegap-plugin
 ========================
+Target Cordova
+------
+version 3.*
 
 Supported paltforms
 ------
