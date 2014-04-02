@@ -74,7 +74,7 @@
         </config-file>        
 
         <source-file src="src/android/src/com/citronium/zbarcdvplugin/ScannerActivity.java" target-dir="src/com/citronium/zbarcdvplugin" /> 
-        <source-file src="src/android/src/com/citronium/zbarcdvplugin/ScannerPlugin.java" target-dir="src/com/citronium/zbarcdvplugin" /> 
+        <source-file src="src/android/src/com/citronium/zbarcdvplugin/ZBarCDVPlugin.java" target-dir="src/com/citronium/zbarcdvplugin" /> 
 
         <source-file src="src/android/src/com/citronium/zbarcdvplugin/zbar/BarcodeFormat.java" target-dir="src/com/citronium/zbarcdvplugin/zbar" /> 
         <source-file src="src/android/src/com/citronium/zbarcdvplugin/zbar/Result.java" target-dir="src/com/citronium/zbarcdvplugin/zbar" />         
