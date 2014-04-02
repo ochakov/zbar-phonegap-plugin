@@ -17,6 +17,8 @@ import com.citronium.zbarcdvplugin.zbar.ZBarScannerView;
 
 public class ScannerActivity extends Activity implements ZBarScannerView.ResultHandler {
     private ZBarScannerView mScannerView;
+    public static int REQUEST_CODE = 1;
+    public static String CODE = "code";
 
     @Override
     public void onCreate(Bundle state) {
@@ -41,7 +43,21 @@ public class ScannerActivity extends Activity implements ZBarScannerView.ResultH
     @Override
     public void handleResult(Result rawResult) {
         // Do something with the result here
-        Log.v("scan", rawResult.getContents()); // Prints scan results
-        Log.v("scan", rawResult.getBarcodeFormat().getName()); // Prints the scan format (qrcode, pdf417 etc.)
+        //Log.v("scan", rawResult.getContents()); // Prints scan results
+        //Log.v("scan", rawResult.getBarcodeFormat().getName()); // Prints the scan format (qrcode, pdf417 etc.)
+
+        Intent intent = new Intent();
+        intent.putExtra("name", rawResult.getContents());
+        setResult(RESULT_OK, intent);
+        finish();
+    }
+
+    @Override
+    public void onBackPressed() {
+        // your code.
+        Intent intent = new Intent();
+        intent.putExtra("name", "canceled");
+        setResult(RESULT_CANCELED, intent);
+        finish();
     }
 }
