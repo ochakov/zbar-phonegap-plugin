@@ -91,6 +91,11 @@
         <source-file src="src/android/libs/x86.jar" target-dir="libs" /> 
         <source-file src="src/android/libs/zbar.jar" target-dir="libs" /> 
 
+        <source-file src="src/android/res/layout/merge_camera_preview_view_finder.xml" target-dir="res/layout" /> 
+        <source-file src="src/android/res/values/colors.xml" target-dir="res/values/colors.xml" /> <!-- can cause conflict with existing files. Can't solve for now. -->
+        <source-file src="src/android/res/values/zbarcdvplugin.xml" target-dir="res/values/zbarcdvplugin.xml" /> 
+        <source-file src="src/android/res/values-xhdpi/zbarcdvplugin.xml" target-dir="res/values-xhdpi/zbarcdvplugin.xml" /> 
+        <source-file src="src/android/res/values-xxhdpi/zbarcdvplugin.xml" target-dir="res/values-xxhdpi/zbarcdvplugin.xml" /> 
     </platform>
 
     
