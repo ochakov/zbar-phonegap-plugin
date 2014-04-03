@@ -9,10 +9,14 @@
 #import <UIKit/UIKit.h>
 #import "ZBarSDK.h"
 
+typedef void(^MyZBarCancelCallback)();
+
 @interface MyZBarViewReaderController : ZBarReaderViewController
 {
     UIView* redLine;
     UIButton* cancelButton;
 }
+
+@property (nonatomic, copy) MyZBarCancelCallback cancelCallback;
 
 @end

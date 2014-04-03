@@ -12,12 +12,20 @@
 @implementation ZBarCDVPlugin
 
 @synthesize readerController;
+@synthesize callbackId;
 
 - (void)showZbar:(CDVInvokedUrlCommand *)command
 {
     if (!self.readerController)
     {
-        self.readerController = [[MyZBarViewReaderController alloc] init];
+        MyZBarViewReaderController* myReaderController = [[MyZBarViewReaderController alloc] init];
+        myReaderController.cancelCallback = ^() {
+            CDVPluginResult* pluginResult = nil;
+            pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:nil];
+            [self.commandDelegate sendPluginResult:pluginResult callbackId:self.callbackId];
+        };
+        
+        self.readerController = myReaderController;
         UIView *cameraOverlayView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 0, 0)];
         
         self.readerController.cameraOverlayView = cameraOverlayView;
@@ -33,10 +41,7 @@
     // present and release the controller
     [[super viewController] presentModalViewController:self.readerController animated: YES];
     
-    CDVPluginResult* pluginResult = nil;
-    pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:@"ShowZBar"];
-    
-    [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
+    self.callbackId = command.callbackId;
 }
 
 - (void) imagePickerController: (UIImagePickerController*) reader
@@ -46,11 +51,10 @@
     id<NSFastEnumeration> results = [info objectForKey: ZBarReaderControllerResults];
     //UIImage *image = [info objectForKey: UIImagePickerControllerOriginalImage];
     ZBarSymbol *symbol = nil;
+    NSString* result = nil;
     
     for(symbol in results) {
-        NSString* retStr = [ NSString stringWithFormat:@"ZBarCDVPlugin.addResult(\"%@\");", symbol.data];
-        [[super webView] stringByEvaluatingJavaScriptFromString:retStr];
-        
+        result = symbol.data;
         break;
     }
     
@@ -60,26 +64,15 @@
     
     // ADD: dismiss the controller (NB dismiss from the *reader*!)
     [[super viewController] dismissModalViewControllerAnimated:YES];
-    NSString* callbackStr = [ NSString stringWithFormat:@"ZBarCDVPlugin.resultCallback()"];
-    // this will execute the your javascript callback
-    [[super webView] stringByEvaluatingJavaScriptFromString:callbackStr];
+
+    CDVPluginResult* pluginResult = nil;
+    pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:result];
+    [self.commandDelegate sendPluginResult:pluginResult callbackId:self.callbackId];
 }
 
 - (void) imagePickerControllerDidCancel:(UIImagePickerController*)picker
 {
     [[super viewController] dismissModalViewControllerAnimated:YES];
-    
-    NSString* callbackStr = [ NSString stringWithFormat:@"ZBarCDVPlugin.cancelCallback()"];
-    [[super webView] stringByEvaluatingJavaScriptFromString:callbackStr];
-}
-
--(void) readerControllerDidFailToRead:(ZBarReaderController*)reader withRetry:(BOOL)retry
-{
-    [[super viewController] dismissModalViewControllerAnimated:YES];
-    
-    NSString* callbackStr = [ NSString stringWithFormat:@"ZBarCDVPlugin.failCallback()"];
-    [[super webView] stringByEvaluatingJavaScriptFromString:callbackStr];
-
 }
 
 @end
