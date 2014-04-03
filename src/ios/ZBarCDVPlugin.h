@@ -13,10 +13,12 @@
 @interface ZBarCDVPlugin : CDVPlugin <ZBarReaderViewDelegate>
 {
     ZBarReaderViewController* readerController;
+    NSString* callbackId;
 }
 
 - (void)showZbar:(CDVInvokedUrlCommand*)command;
 
 @property(retain, nonatomic) ZBarReaderViewController* readerController;
+@property(retain, nonatomic) NSString* callbackId;
 
 @end

@@ -10,10 +10,14 @@
 
 @implementation MyZBarViewReaderController
 
-- (void)cancel:(UIButton*)button {
-    NSLog(@"!!!");
-    
+@synthesize cancelCallback;
+
+- (void)cancel:(UIButton*)button {   
     [self dismissModalViewControllerAnimated:YES];
+    
+    if (self.cancelCallback) {
+        self.cancelCallback();
+    }
 }
 
 - (void)changeOverlayFrame:(UIInterfaceOrientation)interfaceOrientation readerController:(ZBarReaderViewController*) readerController
