@@ -60,6 +60,42 @@
         <framework src="QuartzCore.framework" />
         <framework src="AVFoundation.framework" />
     </platform>
+    <platform name="android">
+        <config-file target="config.xml" parent="/*">
+            <feature name="ZBarCDVPlugin">
+                <param name="android-package" value="com.citronium.zbarcdvplugin.ZBarCDVPlugin"/>
+            </feature>
+        </config-file>
+        <config-file target="AndroidManifest.xml" parent="/manifest/application">
+            <activity android:label="ScannerActivity" android:name="com.citronium.zbarcdvplugin.ScannerActivity" android:theme="@android:style/Theme.NoTitleBar"></activity>
+        </config-file>
+        <config-file target="AndroidManifest.xml" parent="/manifest">
+            <uses-permission android:name="android.permission.CAMERA" />
+        </config-file>        
+
+        <source-file src="src/android/src/com/citronium/zbarcdvplugin/ScannerActivity.java" target-dir="src/com/citronium/zbarcdvplugin" /> 
+        <source-file src="src/android/src/com/citronium/zbarcdvplugin/ZBarCDVPlugin.java" target-dir="src/com/citronium/zbarcdvplugin" /> 
+
+        <source-file src="src/android/src/com/citronium/zbarcdvplugin/zbar/BarcodeFormat.java" target-dir="src/com/citronium/zbarcdvplugin/zbar" /> 
+        <source-file src="src/android/src/com/citronium/zbarcdvplugin/zbar/Result.java" target-dir="src/com/citronium/zbarcdvplugin/zbar" />         
+        <source-file src="src/android/src/com/citronium/zbarcdvplugin/zbar/ZBarScannerView.java" target-dir="src/com/citronium/zbarcdvplugin/zbar" /> 
+
+        <source-file src="src/android/src/com/citronium/zbarcdvplugin/core/BarcodeScannerView.java" target-dir="src/com/citronium/zbarcdvplugin/core" /> 
+        <source-file src="src/android/src/com/citronium/zbarcdvplugin/core/CameraPreview.java" target-dir="src/com/citronium/zbarcdvplugin/core" /> 
+        <source-file src="src/android/src/com/citronium/zbarcdvplugin/core/CameraUtils.java" target-dir="src/com/citronium/zbarcdvplugin/core" /> 
+        <source-file src="src/android/src/com/citronium/zbarcdvplugin/core/DisplayUtils.java" target-dir="src/com/citronium/zbarcdvplugin/core" /> 
+        <source-file src="src/android/src/com/citronium/zbarcdvplugin/core/ViewFinderView.java" target-dir="src/com/citronium/zbarcdvplugin/core" /> 
+
+        <source-file src="src/android/libs/armeabi.jar" target-dir="libs" /> 
+        <source-file src="src/android/libs/armeabi-v7a.jar" target-dir="libs" /> 
+        <source-file src="src/android/libs/x86.jar" target-dir="libs" /> 
+        <source-file src="src/android/libs/zbar.jar" target-dir="libs" /> 
+
+        <source-file src="src/android/res/values/colors.xml" target-dir="res/values" /> <!-- can cause conflict with existing files. Can't solve for now. -->
+        <source-file src="src/android/res/values/zbarcdvplugin.xml" target-dir="res/values" /> 
+        <source-file src="src/android/res/values-xhdpi/zbarcdvplugin.xml" target-dir="res/values-xhdpi" /> 
+        <source-file src="src/android/res/values-xxhdpi/zbarcdvplugin.xml" target-dir="res/values-xxhdpi" /> 
+    </platform>
 
     
 </plugin>
