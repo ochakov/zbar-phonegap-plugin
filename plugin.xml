@@ -61,7 +61,7 @@
         <framework src="AVFoundation.framework" />
     </platform>
     <platform name="android">
-        <config-file target="config.xml" parent="/*">
+        <config-file target="res/xml/config.xml" parent="/*">
             <feature name="ZBarCDVPlugin">
                 <param name="android-package" value="com.citronium.zbarcdvplugin.ZBarCDVPlugin"/>
             </feature>
