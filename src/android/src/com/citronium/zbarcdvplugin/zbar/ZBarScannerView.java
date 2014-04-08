@@ -2,10 +2,12 @@ package com.citronium.zbarcdvplugin.zbar;
 
 import android.content.Context;
 import android.content.res.Configuration;
+import android.graphics.Point;
 import android.graphics.Rect;
 import android.hardware.Camera;
 import android.text.TextUtils;
 import android.util.AttributeSet;
+import android.util.Log;
 
 import net.sourceforge.zbar.Config;
 import net.sourceforge.zbar.Image;
@@ -74,12 +76,23 @@ public class ZBarScannerView extends BarcodeScannerView {
 
     @Override
     public void onPreviewFrame(byte[] data, Camera camera) {
+        boolean isPortrait = (DisplayUtils.getScreenOrientation(getContext()) == Configuration.ORIENTATION_PORTRAIT);
+
         Camera.Parameters parameters = camera.getParameters();
         Camera.Size size = parameters.getPreviewSize();
+
         int width = size.width;
         int height = size.height;
+        Rect frame = (isPortrait) ? getFramingRectInPreview(height, width) : getFramingRectInPreview(width, height);
 
-        if(DisplayUtils.getScreenOrientation(getContext()) == Configuration.ORIENTATION_PORTRAIT) {
+        String crp_cag = "crop";
+        Log.d(crp_cag, "Orientation isPortrait: " + isPortrait);
+        Log.d(crp_cag, "Camera preview size: " + width + "x" + height);
+        Point screenResolution = DisplayUtils.getScreenResolution(getContext());
+        Log.d(crp_cag, "Screen preview size: " + screenResolution.x + "x" + screenResolution.y);
+        Log.d(crp_cag, "New frame coords: " + "top: " + frame.top + ", " + "left: " + frame.left + ", " + "width: " + frame.width() + ", " + "height: " + frame.height());
+
+        if (isPortrait) {
             byte[] rotatedData = new byte[data.length];
             for (int y = 0; y < height; y++) {
                 for (int x = 0; x < width; x++)
@@ -93,6 +106,8 @@ public class ZBarScannerView extends BarcodeScannerView {
 
         Image barcode = new Image(width, height, "Y800");
         barcode.setData(data);
+        barcode.setCrop(frame.left, frame.top, frame.width(), frame.height());
+        //see coords here http://stackoverflow.com/questions/18918211/how-to-change-area-of-scan-zbar
 
         int result = mScanner.scanImage(barcode);
 
