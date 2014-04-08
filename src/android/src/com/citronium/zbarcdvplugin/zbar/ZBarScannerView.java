@@ -85,12 +85,13 @@ public class ZBarScannerView extends BarcodeScannerView {
         int height = size.height;
         Rect frame = (isPortrait) ? getFramingRectInPreview(height, width) : getFramingRectInPreview(width, height);
 
-        String crp_cag = "crop";
+        /*String crp_cag = "crop";
         Log.d(crp_cag, "Orientation isPortrait: " + isPortrait);
         Log.d(crp_cag, "Camera preview size: " + width + "x" + height);
         Point screenResolution = DisplayUtils.getScreenResolution(getContext());
         Log.d(crp_cag, "Screen preview size: " + screenResolution.x + "x" + screenResolution.y);
         Log.d(crp_cag, "New frame coords: " + "top: " + frame.top + ", " + "left: " + frame.left + ", " + "width: " + frame.width() + ", " + "height: " + frame.height());
+        */
 
         if (isPortrait) {
             byte[] rotatedData = new byte[data.length];
